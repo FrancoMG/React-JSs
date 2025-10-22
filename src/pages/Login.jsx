@@ -35,7 +35,6 @@ function Login() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="input"
-              placeholder="admin"
             />
           </div>
           <div className="form-group">
@@ -45,7 +44,6 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input"
-              placeholder="1234"
             />
           </div>
           {error && <p className="error">{error}</p>}
