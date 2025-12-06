@@ -1,4 +1,6 @@
-/* Reset y estilos globales */
+/* ========================================
+   ESTILOS GLOBALES
+   ======================================== */
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +21,9 @@ body {
   min-height: 100vh;
 }
 
-/* App */
+/* ========================================
+   APP
+   ======================================== */
 .app {
   min-height: 100vh;
   display: flex;
@@ -33,12 +37,17 @@ body {
   width: 100%;
 }
 
-/* Navbar */
+/* ========================================
+   NAVBAR
+   ======================================== */
+
 .navbar {
   background-color: #2c3e50;
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+  position: relative;
+  z-index: 100;
 }
 
 .nav-container {
@@ -48,6 +57,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .nav-brand {
@@ -56,6 +66,33 @@ body {
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
+  z-index: 101;
+}
+
+.nav-brand:hover {
+  color: #3498db;
+}
+
+/* ========================================
+   BOTON HAMBURGUESA
+   ======================================== */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 101;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 3px;
 }
 
 .nav-links {
@@ -70,6 +107,7 @@ body {
   font-size: 1rem;
   transition: color 0.3s;
   cursor: pointer;
+  padding: 0.5rem;
 }
 
 .nav-link:hover {
@@ -78,6 +116,7 @@ body {
 
 .nav-link.active {
   font-weight: bold;
+  color: #3498db;
 }
 
 .logout-btn {
@@ -89,13 +128,100 @@ body {
   cursor: pointer;
   font-size: 0.9rem;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 .logout-btn:hover {
   background-color: #c0392b;
 }
 
-/* Container */
+/* ========================================
+   NAVBAR RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  /* ========================================
+   MOSTRAR BOTON HAMBURGUESA
+   ======================================== */
+  .nav-toggle {
+    display: flex;
+  }
+
+/* ========================================
+   LINKS MOVIL
+   ======================================== */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: #2c3e50;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem 2rem;
+    gap: 1.5rem;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+  }
+
+/* ========================================
+   MENU ABIERTO
+   ======================================== */
+  .nav-links-open {
+    right: 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1rem;
+  }
+
+  .logout-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+/* ========================================
+   OVERLAY OSCURO
+   ======================================== */
+  .nav-links-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    width: 80%;
+    max-width: none;
+  }
+}
+
+/* ========================================
+   CONTAINER
+   ======================================== */
 .container {
   max-width: 100%;
   margin: 0 auto;
@@ -104,7 +230,9 @@ body {
   box-sizing: border-box;
 }
 
-/* Hero */
+/* ========================================
+   HERO
+   ======================================== */
 .hero {
   text-align: center;
   padding: 3rem 2rem;
@@ -121,7 +249,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* Sección */
+/* ========================================
+   SECCION
+   ======================================== */
 .seccion-titulo {
   text-align: center;
   margin-bottom: 2rem;
@@ -130,9 +260,38 @@ body {
 }
 
 /* Grid de productos */
+/* --- Estilos específicos para Productos Destacados (Inicio) --- */
+.grid-destacados {
+  display: grid;
+  /* 3 columnas fijas para escritorio */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  /* Aquí limitamos el ancho para que no ocupe toda la pantalla */
+  max-width: 1000px; 
+  /* Esto centra el bloque en la pantalla */
+  margin: 0 auto 2rem auto;
+  justify-items: center;
+}
+
+/* Responsividad para móviles y tablets */
+@media (max-width: 992px) {
+  .grid-destacados {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-destacados {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+}
+
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* CAMBIO: Forzamos 4 columnas de igual tamaño */
+  grid-template-columns: repeat(4, 1fr); 
   gap: 2rem;
   margin-bottom: 2rem;
   width: 100%;
@@ -189,7 +348,9 @@ body {
   margin: 0.5rem 0;
 }
 
-/* Botones */
+/* ========================================
+   BOTONES
+   ======================================== */
 .btn-primario {
   background-color: #3498db;
   color: white;
@@ -241,13 +402,17 @@ body {
   background-color: #c0392b;
 }
 
-/* Ver más */
+/* ========================================
+   VER MAS
+   ======================================== */
 .ver-mas {
   text-align: center;
   margin-top: 2rem;
 }
 
-/* Mensajes */
+/* ========================================
+   MENSAJES
+   ======================================== */
 .mensaje {
   text-align: center;
   padding: 3rem;
@@ -255,7 +420,9 @@ body {
   color: #7f8c8d;
 }
 
-/* Detalle de producto */
+/* ========================================
+   DETALLE DE PRODUCTO
+   ======================================== */
 .detalle-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -310,7 +477,9 @@ body {
   margin: 0;
 }
 
-/* Carrito */
+/* ========================================
+   CARrito
+   ======================================== */
 .carrito-vacio {
   text-align: center;
   padding: 4rem 2rem;
@@ -385,7 +554,9 @@ body {
   color: #2c3e50;
 }
 
-/* Login */
+/* ========================================
+   LOGIN
+   ======================================== */
 .login-container {
   max-width: 500px;
   margin: 3rem auto;
@@ -446,7 +617,9 @@ body {
   font-size: 0.9rem;
 }
 
-/* Admin */
+/* ========================================
+   ADMIN
+   ======================================== */
 .admin-panel {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -470,9 +643,11 @@ body {
   margin: 0.5rem 0;
 }
 
-/* Footer */
+/* ========================================
+   FOOTER
+   ======================================== */
 .footer {
-  background-color: #2c3e50;
+  background-color: #212121;
   color: white;
   text-align: center;
   padding: 1.5rem;
@@ -484,23 +659,480 @@ body {
   margin: 0;
 }
 
-@media (min-width: 1200px) {
-  .productos-grid-centrado {
-    grid-template-columns: repeat(3, minmax(250px, 350px));
+/* ========================================
+   ADMINISTRACIÓN DE PRODUCTOS
+   ======================================== */
+
+.admin-actions {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.admin-productos-lista {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* ========================================
+   TABLA DE PRODUCTOS
+   ======================================== */
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabla-productos thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-productos th {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.tabla-productos tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.tabla-imagen {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* ========================================
+   FORMULARIO DE PRODUCTO
+   ======================================== */
+
+.formulario-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.formulario-producto-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.formulario-producto-container h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.formulario-producto-container .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.formulario-producto-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.formulario-producto-container textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: Arial, sans-serif;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-buttons button {
+  flex: 1;
+}
+
+/* ========================================
+   MODAL DE CONFIRMACIÓN
+   ======================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-content h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  min-width: 120px;
+}
+
+/* ========================================
+   HISTORIAL DE PEDIDOS
+   ======================================== */
+.ordenes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.orden-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.orden-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.orden-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.orden-fecha {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.orden-estado-container {
+  text-align: right;
+}
+
+.orden-total {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.orden-productos h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #34495e;
+}
+
+.orden-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.orden-item:last-child {
+  border-bottom: none;
+}
+
+.orden-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.orden-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.orden-item-cantidad, .orden-item-subtotal {
+  font-weight: bold;
+  color: #555;
+}
+
+/* ========================================
+   ESTILOS PARA ICONOS
+   ======================================== */
+
+/* Iconos en botones */
+button svg,
+.btn-primario svg,
+.btn-secundario svg,
+.btn-eliminar svg,
+.logout-btn svg {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* Iconos en navbar */
+.nav-icon {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* Iconos en títulos */
+.seccion-titulo svg {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.admin-card h3 svg {
+  margin-right: 0.5rem;
+  color: #3498db;
+}
+
+/* Animación sutil para iconos en hover */
+button:hover svg,
+.nav-link:hover .nav-icon {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* Ajustes responsive para iconos */
+@media (max-width: 768px) {
+  .nav-icon {
+    font-size: 1rem;
+  }
+  
+  button svg {
+    font-size: 0.9rem;
   }
 }
 
-/* Para pantallas medianas, 2 columnas */
-@media (min-width: 768px) and (max-width: 1199px) {
-  .productos-grid-centrado {
-    grid-template-columns: repeat(2, minmax(250px, 350px));
+/* ========================================
+   PERSONALIZACIÓN DE REACT TOASTIFY
+   ======================================== */
+
+/* 1. Forzar fondo y color base para alertas de ÉXITO */
+.Toastify__toast--success {
+  background-color: #27ae60 !important;
+  color: #ffffff !important;
+}
+
+/* 2. Forzar fondo y color base para alertas de ERROR */
+.Toastify__toast--error {
+  background-color: #e74c3c !important;
+  color: #ffffff !important;
+}
+
+/* 3. Forzar fondo y color base para alertas de INFORMACIÓN */
+.Toastify__toast--info {
+  background-color: #3498db !important;
+  color: #ffffff !important;
+}
+
+/* 4. Forzar fondo y color base para alertas de ADVERTENCIA */
+.Toastify__toast--warning {
+  background-color: #f1c40f !important;
+  color: #ffffff !important;
+}
+
+/* 5. REGLA CLAVE: Forzar color blanco en el cuerpo del mensaje y sus hijos directos */
+.Toastify__toast-body,
+.Toastify__toast-body > div {
+  color: #ffffff !important;
+  font-weight: 600; /* Negrita para que se lea mejor */
+}
+
+/* 6. Cambiar color del icono de progreso (la barrita de tiempo) */
+.Toastify__progress-bar {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 7. Cambiar el color del botón de cerrar (la X) y quitarle la transparencia */
+.Toastify__close-button {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* 8. Cambiar el color de los iconos SVG (el check, la exclamación, etc.) */
+.Toastify__toast-icon > svg {
+  fill: #ffffff !important;
+}
+
+/* ========================================
+   RESPONSIVE - ADMIN PRODUCTOS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .tabla-productos {
+    font-size: 0.85rem;
+  }
+
+  .tabla-productos th,
+  .tabla-productos td {
+    padding: 0.5rem;
+  }
+
+  .tabla-imagen {
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .formulario-producto-container {
+    padding: 1.5rem;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons button {
+    width: 100%;
   }
 }
 
-/* Para móviles, 1 columna centrada */
-@media (max-width: 767px) {
-  .productos-grid-centrado {
+/* Mejorar tabla en móviles - hacer scrollable */
+@media (max-width: 576px) {
+  .admin-productos-lista {
+    padding: 1rem;
+  }
+
+  .tabla-productos thead {
+    display: none;
+  }
+
+  .tabla-productos,
+  .tabla-productos tbody,
+  .tabla-productos tr,
+  .tabla-productos td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-productos tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: white;
+  }
+
+  .tabla-productos td {
+    text-align: right;
+    padding: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .tabla-productos td:last-child {
+    border-bottom: none;
+  }
+
+  .tabla-productos td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.5rem;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .tabla-productos td:first-child {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .btn-small {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+  }
+}
+
+/* Para pantallas medianas (tablets o laptops pequeñas): 3 columnas */
+@media (max-width: 1200px) {
+  .productos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Para tablets pequeñas: 2 columnas */
+@media (max-width: 900px) {
+  .productos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Para móviles: 1 sola columna */
+@media (max-width: 600px) {
+  .productos-grid {
     grid-template-columns: 1fr;
-    max-width: 350px;
   }
 }

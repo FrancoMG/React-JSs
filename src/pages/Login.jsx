@@ -1,57 +1,84 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { NavContext } from '../context/NavContext';
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
+import { FaUser, FaLock, FaSignInAlt } from 'react-icons/fa';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { login, isAuthenticated } = useContext(AuthContext);
+  const { login, user, isAuthenticated } = useContext(AuthContext);
   const { navigate } = useContext(NavContext);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate('admin');
+    if (isAuthenticated && user) {
+      if (user.role === 'admin') {
+        navigate('admin');
+      } else {
+        navigate('inicio'); // O a 'mis-pedidos'
+      }
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const success = login(username, password);
-    if (!success) {
-      setError('Usuario o contraseña incorrectos. Usa: admin / 1234');
+    const resultado = login(email, password);
+    if (resultado.success) {
+      toast.success(`¡Bienvenido!`);
+    } else {
+      toast.error(resultado.message);
     }
   };
 
   return (
-    <div className="container">
-      <div className="login-container">
-        <h2>Iniciar Sesión</h2>
-        <div className="login-form">
-          <div className="form-group">
-            <label>Usuario:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="input"
-            />
+    <>
+      <Helmet>
+        <title>Iniciar Sesión | Curso ReactJS</title>
+      </Helmet>
+      <div className="container">
+        <div className="login-container">
+          <h2><FaSignInAlt /> Iniciar Sesión</h2>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label><FaUser /> Email / Usuario:</label>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input"
+                placeholder="admin o tu email"
+              />
+            </div>
+            <div className="form-group">
+              <label><FaLock /> Contraseña:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input"
+                placeholder="****"
+              />
+            </div>
+            <button type="submit" className="btn-primario">
+              <FaSignInAlt /> Ingresar
+            </button>
+          </form>
+          
+          {/* Opción para registrarse */}
+          <div style={{textAlign: 'center', marginTop: '1.5rem', borderTop: '1px solid #eee', paddingTop: '1rem'}}>
+            <p style={{color: '#7f8c8d'}}>¿No tienes una cuenta?</p>
+            <button 
+              onClick={() => navigate('registro')} 
+              className="btn-secundario" 
+              style={{marginTop: '0.5rem', width: '100%'}}
+            >
+              Crea una cuenta
+            </button>
           </div>
-          <div className="form-group">
-            <label>Contraseña:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input"
-            />
-          </div>
-          {error && <p className="error">{error}</p>}
-          <button onClick={handleSubmit} className="btn-primario">Ingresar</button>
         </div>
-        <p className="login-hint">Credenciales de prueba: admin / 1234</p>
       </div>
-    </div>
+    </>
   );
 }
 
