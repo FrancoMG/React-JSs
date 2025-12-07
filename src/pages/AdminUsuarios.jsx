@@ -46,7 +46,7 @@ function AdminUsuarios() {
     );
     localStorage.setItem('registeredUsers', JSON.stringify(nuevosUsuarios));
     setUsuarios(nuevosUsuarios);
-    setUsuarioEditando(null); // Cerrar formulario
+    setUsuarioEditando(null);
     toast.success('Usuario actualizado correctamente');
   };
 
@@ -89,7 +89,7 @@ function AdminUsuarios() {
                       <th>Email</th>
                       <th>Teléfono</th>
                       <th>Dirección</th>
-                      <th>Acciones</th> {/* Columna de Acciones */}
+                      <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>

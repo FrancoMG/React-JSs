@@ -103,7 +103,7 @@ function AdminProductos() {
 
   return (
     <>
-      <Helmet> {/* ⬅️ NUEVO */}
+      <Helmet>
         <title>Gestión de Productos | Admin</title>
         <meta name="description" content="Panel de administración para gestionar el catálogo de productos." />
       </Helmet>

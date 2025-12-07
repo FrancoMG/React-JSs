@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify'; // Importamos toast para las alertas
+import { toast } from 'react-toastify';
 
 function FormularioUsuario({ usuarioInicial, onSubmit, onCancelar }) {
   const [usuario, setUsuario] = useState({
@@ -21,7 +21,7 @@ function FormularioUsuario({ usuarioInicial, onSubmit, onCancelar }) {
     setUsuario({ ...usuario, [name]: value });
   };
 
-  // --- LÓGICA DE VALIDACIÓN (Igual que en Registro) ---
+  // --- LÓGICA DE VALIDACIÓN ---
   const validarDatos = () => {
     // 1. Campos obligatorios
     if (!usuario.nombre.trim() || !usuario.apellido.trim() || !usuario.email.trim()) {
@@ -29,7 +29,7 @@ function FormularioUsuario({ usuarioInicial, onSubmit, onCancelar }) {
       return false;
     }
 
-    // 2. Validación de Email con Regex
+    // 2. Validación de Email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(usuario.email)) {
       toast.error('Ingresa un email válido');
@@ -37,7 +37,6 @@ function FormularioUsuario({ usuarioInicial, onSubmit, onCancelar }) {
     }
 
     // 3. Validación de Teléfono (Solo números)
-    // Nota: Solo validamos si el campo tiene contenido
     if (usuario.telefono && !/^[0-9]+$/.test(usuario.telefono)) {
       toast.error('El teléfono debe contener solo números');
       return false;

@@ -3,7 +3,6 @@ import React, { createContext, useState, useEffect } from 'react';
 export const CarritoContext = createContext();
 
 export function CarritoProvider({ children }) {
-  // 1. Inicializar buscando en localStorage (con manejo de errores)
   const [carrito, setCarrito] = useState(() => {
     try {
       const carritoGuardado = localStorage.getItem('carrito');
@@ -14,13 +13,13 @@ export function CarritoProvider({ children }) {
     }
   });
 
-  // 2. Guardar en localStorage cada vez que cambia
+
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
   const agregarAlCarrito = (producto) => {
-    // Si el producto no es válido, no hacemos nada
+
     if (!producto || !producto.id) return;
 
     const productoExistente = carrito.find(item => item.id === producto.id);

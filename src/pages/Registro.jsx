@@ -36,14 +36,14 @@ function Registro() {
       return false;
     }
 
-    // 3. Validar Teléfono (Solo números y longitud mínima)
+    // 3. Validar Teléfono
     const telefonoRegex = /^[0-9]{7,15}$/;
     if (!telefonoRegex.test(formData.telefono)) {
       toast.error('El teléfono debe contener solo números (mínimo 7 dígitos)');
       return false;
     }
 
-    // 4. Validar contraseña segura (mínimo 4 caracteres)
+    // 4. Validar contraseña segura
     if (formData.password.length < 4) {
       toast.error('La contraseña debe tener al menos 4 caracteres');
       return false;

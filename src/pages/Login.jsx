@@ -65,7 +65,6 @@ function Login() {
             </button>
           </form>
           
-          {/* Opción para registrarse */}
           <div style={{textAlign: 'center', marginTop: '1.5rem', borderTop: '1px solid #eee', paddingTop: '1rem'}}>
             <p style={{color: '#7f8c8d'}}>¿No tienes una cuenta?</p>
             <button 

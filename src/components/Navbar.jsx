@@ -36,7 +36,6 @@ function Navbar() {
           <div className="hamburger"></div>
         </div>
 
-        {/* Enlaces de Navegación */}
         <div className={`nav-links ${menuAbierto ? 'nav-links-open' : ''}`}>
           <span onClick={() => handleNavigate('inicio')} className={`nav-link ${currentPage === 'inicio' ? 'active' : ''}`}>
             <FaHome className="nav-icon" /> Inicio

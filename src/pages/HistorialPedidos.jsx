@@ -8,11 +8,9 @@ function HistorialPedidos() {
   const [ordenes, setOrdenes] = useState([]);
 
   useEffect(() => {
-    // Leer todas las órdenes del localStorage
     const todasLasOrdenes = JSON.parse(localStorage.getItem('orders') || '[]');
     
     if (user) {
-      // Filtrar solo las que pertenecen al usuario actual (por email)
       const misOrdenes = todasLasOrdenes.filter(o => o.userId === user.email);
       // Ordenar: más recientes primero
       setOrdenes(misOrdenes.reverse());
@@ -36,7 +34,6 @@ function HistorialPedidos() {
             {ordenes.map(orden => (
               <div key={orden.id} className="orden-card">
                 
-                {/* Cabecera del Pedido */}
                 <div className="orden-header">
                   <div>
                     <h3>Pedido #{orden.id}</h3>
@@ -50,7 +47,6 @@ function HistorialPedidos() {
 
                 <hr style={{ margin: '1rem 0', border: '0', borderTop: '1px solid #eee' }} />
 
-                {/* Lista de Productos */}
                 <div className="orden-productos">
                   <h4>Productos Comprados:</h4>
                   {orden.productos.map((prod, index) => (

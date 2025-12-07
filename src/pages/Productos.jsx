@@ -48,7 +48,6 @@ function Productos() {
       <div className="container">
         <h2 className="seccion-titulo">Nuestros Productos</h2>
 
-        {/* Buscador */}
         <div style={estilosBuscador.contenedor}>
           <FaSearch style={estilosBuscador.icono} />
           <input
@@ -71,7 +70,6 @@ function Productos() {
             )}
         </div>
 
-        {/* Paginador */}
         {totalPaginas > 1 && (
           <div style={estilosPaginador.contenedor}>
             <button 

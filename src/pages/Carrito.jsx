@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CarritoContext } from '../context/CarritoContext';
 import { NavContext } from '../context/NavContext';
-import { AuthContext } from '../context/AuthContext'; // Importamos Auth
+import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 import { FaShoppingCart, FaTrash, FaShoppingBag, FaCreditCard } from 'react-icons/fa';
@@ -9,7 +9,7 @@ import { FaShoppingCart, FaTrash, FaShoppingBag, FaCreditCard } from 'react-icon
 function Carrito() {
   const { carrito, eliminarDelCarrito, vaciarCarrito, totalCarrito } = useContext(CarritoContext);
   const { navigate } = useContext(NavContext);
-  const { isAuthenticated, crearOrden } = useContext(AuthContext); // Traemos función crearOrden
+  const { isAuthenticated, crearOrden } = useContext(AuthContext);
 
   const handleEliminar = (id, nombre) => {
     eliminarDelCarrito(id);
@@ -87,7 +87,6 @@ function Carrito() {
           <button onClick={handleVaciarCarrito} className="btn-secundario">
             <FaTrash /> Vaciar
           </button>
-          {/* Botón conectado */}
           <button onClick={handlePago} className="btn-primario">
             <FaCreditCard /> Proceder al Pago
           </button>

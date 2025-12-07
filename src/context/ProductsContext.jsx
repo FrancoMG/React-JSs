@@ -8,7 +8,6 @@ export function ProductsProvider({ children }) {
   const [error, setError] = useState(null);
 
 const API_URL = 'https://68f4261ab16eb6f46833f3ee.mockapi.io/products';
-  // Cargar productos al iniciar
   useEffect(() => {
     obtenerProductos();
   }, []);

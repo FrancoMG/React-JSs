@@ -3,7 +3,6 @@ import React, { createContext, useState, useEffect } from 'react';
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // Estado de usuario
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('currentUser');
     return storedUser ? JSON.parse(storedUser) : null;
@@ -60,17 +59,16 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
-  // NUEVA FUNCIÓN: Crear Orden y guardarla en localStorage
   const crearOrden = (carrito, total) => {
     if (!user) return;
 
     const nuevaOrden = {
-      id: Date.now(), // ID único basado en fecha
+      id: Date.now(),
       fecha: new Date().toLocaleString(),
       productos: carrito,
       total: total,
       estado: 'completado',
-      userId: user.email // Asociamos la orden al usuario actual
+      userId: user.email
     };
 
     const ordenes = JSON.parse(localStorage.getItem('orders') || '[]');

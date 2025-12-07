@@ -37,7 +37,6 @@ function FormularioUsuario({ usuarioInicial, onSubmit, onCancelar }) {
     }
 
     // 3. Validación de Teléfono (Solo números)
-    // Nota: Solo validamos si el campo tiene contenido
     if (usuario.telefono && !/^[0-9]+$/.test(usuario.telefono)) {
       toast.error('El teléfono debe contener solo números');
       return false;

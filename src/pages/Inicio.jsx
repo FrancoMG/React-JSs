@@ -23,7 +23,6 @@ function Inicio() {
       <div className="container">
         <div className="hero">
           <h1>Bienvenido a Curso ReactJS Store</h1>
-          <p>Los mejores productos al mejor precio</p>
         </div>
         
         <h2 className="seccion-titulo">Productos Destacados</h2>
