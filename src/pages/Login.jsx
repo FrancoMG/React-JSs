@@ -61,7 +61,7 @@ function Login() {
               />
             </div>
             <button type="submit" className="btn-primario">
-              <FaSignInAlt /> Ingresar
+              <FaSignInAlt /> Ingresar (admin / 1234)
             </button>
           </form>
           
