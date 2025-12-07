@@ -5,7 +5,7 @@ Este repositorio contiene la entrega final del proyecto eCommerce desarrollado p
 ## 🚀 Despliegue (Demo)
 
 Puedes ver el proyecto funcionando aquí:
-**https://cursoreact-js.netlify.app/**
+**https://react-j-ss.vercel.app/**
 
 ---
 
