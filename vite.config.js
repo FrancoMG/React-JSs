@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // IMPORTANTE: Reemplaza esto con el nombre de tu repositorio
-  base: '/ReactJS/', 
+  base: '/React-JSs/', 
 })
