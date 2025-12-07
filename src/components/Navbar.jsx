@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { CarritoContext } from '../context/CarritoContext';
 import { AuthContext } from '../context/AuthContext';
 import { NavContext } from '../context/NavContext';
-import { FaHome, FaShoppingBag, FaShoppingCart, FaUserShield, FaSignInAlt, FaSignOutAlt, FaHistory, FaUser } from 'react-icons/fa';
+import { FaHome, FaShoppingBag, FaShoppingCart, FaUserShield, FaSignInAlt, FaSignOutAlt, FaHistory } from 'react-icons/fa';
 
 function Navbar() {
   const { carrito } = useContext(CarritoContext);
@@ -29,7 +29,18 @@ function Navbar() {
         <div onClick={() => handleNavigate('inicio')} className="nav-brand">
           Curso ReactJS
         </div>
+
+        <div className="nav-toggle" onClick={() => setMenuAbierto(!menuAbierto)}>
+          <div className="hamburger"></div>
+          <div className="hamburger"></div>
+          <div className="hamburger"></div>
+        </div>
+
+        {/* Enlaces de Navegación */}
         <div className={`nav-links ${menuAbierto ? 'nav-links-open' : ''}`}>
+          <span onClick={() => handleNavigate('inicio')} className={`nav-link ${currentPage === 'inicio' ? 'active' : ''}`}>
+            <FaHome className="nav-icon" /> Inicio
+          </span>
           <span onClick={() => handleNavigate('productos')} className={`nav-link ${currentPage === 'productos' ? 'active' : ''}`}>
             <FaShoppingBag className="nav-icon" /> Productos
           </span>
@@ -53,7 +64,7 @@ function Navbar() {
                 </span>
               )}
 
-              <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px'}}>
                 <span style={{color: '#3498db', fontSize: '0.9rem'}}>Hola, {user.nombre}</span>
                 <button onClick={handleLogout} className="logout-btn">
                   <FaSignOutAlt /> Salir
